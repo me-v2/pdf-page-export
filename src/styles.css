@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  挑页 · 灯箱
+  纸白在墨色井里，青=当前，品红=已出。
+  chassis #1e2328  well #14181c  paper #f7f5f1
+  cyan    #5ad0e6  magenta #e35d9a  ink #ece7dc
+*/
+:root {
+  --radius: 0.375rem;
+  --background: oklch(0.22 0.012 240);
+  --foreground: oklch(0.94 0.012 90);
+  --card: oklch(0.25 0.012 240);
+  --card-foreground: oklch(0.94 0.012 90);
+  --popover: oklch(0.24 0.012 240);
+  --popover-foreground: oklch(0.94 0.012 90);
+  --primary: oklch(0.8 0.1 210);
+  --primary-foreground: oklch(0.2 0.02 240);
+  --secondary: oklch(0.29 0.012 240);
+  --secondary-foreground: oklch(0.92 0.01 90);
+  --muted: oklch(0.29 0.01 240);
+  --muted-foreground: oklch(0.7 0.02 230);
+  --accent: oklch(0.31 0.025 210);
+  --accent-foreground: oklch(0.95 0.01 90);
+  --destructive: oklch(0.68 0.18 28);
+  --border: oklch(0.35 0.012 240);
+  --input: oklch(0.35 0.012 240);
+  --ring: oklch(0.8 0.1 210);
+  --well: oklch(0.17 0.01 240);
+  --exported: oklch(0.68 0.155 350);
+  --paper: oklch(0.975 0.006 90);
+}
+
+@theme inline {
+  --font-sans: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC",
+    ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "SF Mono", Menlo, Consolas, "PingFang SC", ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-well: var(--well);
+  --color-exported: var(--exported);
+  --color-paper: var(--paper);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    margin: 0;
+    font-family: var(--font-sans);
+    font-feature-settings: "kern" 1;
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 38%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
